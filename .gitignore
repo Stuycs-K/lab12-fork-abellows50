@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-
+runme
 # Object files
 *.o
 *.ko
