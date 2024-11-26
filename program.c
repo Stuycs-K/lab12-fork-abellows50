@@ -20,9 +20,9 @@ int child(){
     perror(strerror(errno));
   }
   printf("%d sleeping for %d\n", getpid(), randBytes);
-  
+
   sleep(randBytes);
-  printf("%d woke up after sleeping for %d sec\n", getpid(), randBytes);
+  printf("%d finished after %d sec\n", getpid(), randBytes);
   exit(randBytes);
 }
 
@@ -44,13 +44,14 @@ int main(){
 
       int status;
       kidid = wait(&status);
-      printf("%d now reports %d (my child) woke up after sleeping for %d sec\n", getpid(),kidid, WIFEXITED(status));
+      printf("Main Process %d is done. Child %d slept for %d sec\n",
+        getpid(),kidid, WEXITSTATUS(status));
       //end parent
     }
 
-    
+
     else {
       child();
     }
-    
+
 }
